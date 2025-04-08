@@ -1,6 +1,9 @@
 import Services.Internet.Browser;
 import Services.Internet.Internet;
+import Services.Ligacoes.Ligacoes;
+import Services.Ligacoes.Phone;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -20,7 +23,7 @@ public class Main {
                     opcaoNavegador(scanner);
                 }
                 case 2 -> {
-                    System.out.println("Selecionado a Chamadas");
+                    opcaoLigacoes(scanner);
 
                 }
                 case 3 -> {
@@ -64,13 +67,62 @@ public class Main {
                 }
                 default -> System.out.println("Selecione uma opção válida!!");
             }
+            System.out.println("\n\n");
         }
         System.out.println("Saindo do navegador");
 
     }
 
-    static void opcaoLigacoes() {
+    static void opcaoLigacoes(Scanner scanner) {
+        Phone ligacao = new Ligacoes();
 
+        System.out.println("Selecionado o Telefone");
+
+        while (true) {
+            String estadoLigacao;
+            if (ligacao.getLigacao()) estadoLigacao = "Em ligação"; else estadoLigacao = "Fora de ligação";
+            System.out.println("O que gostaria de realizar no navegador?");
+            System.out.println("Estado ligação: " + estadoLigacao + "\n");
+            System.out.println("Opção 1 - Realizar ligação");
+            System.out.println("Opção 2 - Desligar ligação");
+            System.out.println("Opção 3 - Selecionar Numero");
+            System.out.println("Opção 4 - Contato atual");
+            System.out.println("Opção 5 - Sair\n");
+
+            int opcao = scanner.nextInt();
+            if (opcao == 5) break;
+
+
+            switch (opcao) {
+                case 1 -> {
+                    //
+                    if (Objects.equals(ligacao.getContato(), "")) {
+                        System.out.println("Selecione um número de telefone.");
+                    } else {
+                        ligacao.realizarLigacao();
+                    }
+                }
+                case 2 -> {
+                    if (ligacao.getLigacao()) {
+                        ligacao.desligarLigacao();
+                    } else {
+                        System.out.println("Esteja em uma ligação para poder desligar");
+                    }
+                }
+                case 3 -> {
+                    System.out.println("Escreva um número de telefone: ");
+                    scanner.nextLine();
+                    String numero = scanner.nextLine();
+                    ligacao.selecionarContato(numero);
+                }
+                case 4 -> {
+                    System.out.println("Contato atual: " + ligacao.contatoAtual());
+                }
+                default -> System.out.println("Selecione uma opção válida!!");
+            }
+            System.out.println("\n\n");
+        }
+        System.out.println("Saindo do navegador");
     }
 
     static void opcaoIphone() {
