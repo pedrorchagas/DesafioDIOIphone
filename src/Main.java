@@ -2,6 +2,8 @@ import Services.Internet.Browser;
 import Services.Internet.Internet;
 import Services.Ligacoes.Ligacoes;
 import Services.Ligacoes.Phone;
+import Services.Musicas.IPod;
+import Services.Musicas.Musicas;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -27,7 +29,7 @@ public class Main {
 
                 }
                 case 3 -> {
-                    System.out.println("Selecionado o IPod");
+                    opcaoIpod(scanner);
 
                 }
                 default -> System.out.println("Escreva uma opção válida!");
@@ -125,7 +127,49 @@ public class Main {
         System.out.println("Saindo do navegador");
     }
 
-    static void opcaoIphone() {
+    static void opcaoIpod(Scanner scanner) {
+        IPod musicas = new Musicas();
+
+        System.out.println("Selecionado o Telefone");
+
+        while (true) {
+            System.out.println("O que gostaria de realizar no ipod?");
+            System.out.println("Opção 1 - Tocar musica");
+            System.out.println("Opção 2 - parar musica");
+            System.out.println("Opção 3 - Selecionar musica");
+            System.out.println("Opção 4 - Sair");
+
+            int opcao = scanner.nextInt();
+            if (opcao == 4) break;
+
+            switch (opcao) {
+                case 1 -> {
+                    if (musicas.getMusic() != null && !musicas.getStateMusic()) {
+                        musicas.tocarMusica();
+                    } else {
+                        System.out.println("Escolha uma música antes de colocar para tocar ou ela já está tocando!");
+                    }
+
+                }
+                case 2 -> {
+                    if (musicas.getMusic() != null && musicas.getStateMusic()) {
+                        musicas.pararMusica();
+                    } else {
+                        System.out.println("Escolha uma música antes de parar ela ou ela já está parada!");
+                    }
+
+                }
+                case 3 -> {
+                    System.out.println("Escreva o nome da música");
+                    scanner.nextLine();
+                    String musica = scanner.nextLine();
+                    musicas.selecionarMusica(musica);
+                }
+                default -> System.out.println("Escreva uma opção válida!!!");
+            }
+
+
+        }
 
     }
 
