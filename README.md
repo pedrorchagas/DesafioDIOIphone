@@ -17,4 +17,5 @@ _Usando o sistema de polimorfismo e herança é possível fazer outro aplicativo
 
 
 # 😛 Demostração de funcionamento:
+_Clique no GIF para ver o video completo_
 [![Demo funcionamento iphone](https://github.com/pedrorchagas/DesafioDIOIphone/blob/master/video/funcionamento.gif?raw=true)](https://youtu.be/_VLfnmGEtwA)
